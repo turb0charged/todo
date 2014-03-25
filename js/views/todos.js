@@ -18,6 +18,7 @@ define([
 		events: {
 			'click .toggle':	'toggleCompleted',
 			'dblclick label':	'edit',
+			'swipe label': 'clear',
 			'click .destroy':	'clear',
 			'keypress .edit':	'updateOnEnter',
 			'blur .edit':		'close'
@@ -35,6 +36,7 @@ define([
 		// Re-render the titles of the todo item.
 		render: function () {
 			this.$el.html(this.template(this.model.toJSON()));
+			this.$el.hammer();
 			this.$el.toggleClass('completed', this.model.get('completed'));
 
 			this.toggleVisible();
