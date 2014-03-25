@@ -98,6 +98,7 @@ define([
 		newAttributes: function () {
 			return {
 				title: this.$input.val().trim(),
+				setDate: this.$dateInput.val().trim(),
 				order: Todos.nextOrder(),
 				completed: false
 			};
@@ -106,12 +107,13 @@ define([
 		// If you hit return in the main input field, create new **Todo** model,
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
-			if (e.which !== Common.ENTER_KEY || !this.$input.val().trim()) {
+			if (e.which === ENTER_KEY) {
 				return;
 			}
 
 			Todos.create(this.newAttributes());
 			this.$input.val('');
+			this.$dateInput.val('');
 		},
 
 		// Clear all completed todo items, destroying their models.
